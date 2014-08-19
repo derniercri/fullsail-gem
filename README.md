@@ -1,4 +1,5 @@
-shipyard-cli
+
+Shipyard-Cli
 ============
 
 Shipyard client side
@@ -21,6 +22,7 @@ To register your deployments, call:
 
 
 	ShipyardCli.deploy(application, environment, status,[commit_hash])
+
 
 
 - **application** [a-z A-Z 0-9]: name of your application
