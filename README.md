@@ -1,19 +1,32 @@
 shipyard-cli
 ============
 
-shipyard client side
+Shipyard client side
+--------------------
 
 
-to register your deployments call:
+
+First you must config gloval variable in your ruby code
 
 
-  ShipyardCli.deploy(application, environment, status,[commit_hash])
+	$URL_SHIYARD_CLI = 'url'		# Must contain 'http://' or 'https://'
 
 
-application [a-z A-Z 0-9]: name of your application
+ex: $URL_SHIYARD_CLI = 'http://api.xxx.sc/vzz/deployments'
 
-environment [a-z A-Z 0-9]: environmement deployemts for exemple 'development', 'staging'...
 
-status [0-9]]: '-1' in progress   /  '0' done
 
-commit_hash (optional): commit hash from git, other...
+
+To register your deployments, call:
+
+
+	ShipyardCli.deploy(application, environment, status,[commit_hash])
+
+
+- **application** [a-z A-Z 0-9]: name of your application
+
+- **environment** [a-z A-Z 0-9]: environmement deployemts for exemple 'development', 'staging'...
+
+- **status** [0-9]]: '-1' in progress   /  '0' done  /  positive for errors
+
+- **commit_hash** (optional): commit hash from git, other...

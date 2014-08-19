@@ -2,10 +2,16 @@ require 'json'
 require 'net/http'
 
 class ShipyardCli
-  def self.deploy(appli, env, stat, commit)
+  def self.deploy(appli = nil, env = nil, stat = 99999, *commit)
 
-    if appli.empty? || env.empty? || stat.empty? || stat.is_a?
-      return 'Application, Environment, Status(numeric) not nil'
+    unless $URL_SHIYARD_CLI.include?('://')
+      puts "Set Global var on your code '$URL_SHIYARD_CLI' with valid url"
+      return
+    end
+
+    if appli.empty? || env.empty? || stat.is_a? || stat === 99999
+      puts "ShiptardCli.deploy() need 3 args: application, environment, status, [commit_hash]"
+      return
     end
 
     deploy = {
@@ -14,7 +20,8 @@ class ShipyardCli
       :status => stat,
       :commit_hash => commit
     }
-    uri = URI('http://localhost:80/v1/deployments')
+
+    uri = URI($URL_SHIYARD_CLI) # Global Var Set by User on his code 'http://api.xxx.zz/v1/deployments'
     http = Net::HTTP.new(uri.host, uri.port)
     req = Net::HTTP::Post.new(uri.path)
     req.add_field "Content-Type", "Application/json"
