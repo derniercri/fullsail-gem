@@ -39,19 +39,25 @@ ex: $URL_SHIYARD_CLI = 'http://api.xxx.sc/vzz/deployments'
 
 On you project, go to config/deploy.rb put between 'namespace :deploy do' and 'end' followings
 
-	  desc 'Sending Signal Starting to Shipyard Server'
-	  task :ship_starting do
-	    $URL_SHIYARD_CLI = 'http://localhost/v1/deployments'
-	    ShipyardCli.deploy(fetch(:application), "deployment-starting", -2, fetch(:scm_user) + '_' +fetch(:branch))
-	  end
-	  
-	  desc 'Sending Signal Finished to Shipyard Server'
-	  task :ship_finished do
-	    ShipyardCli.deploy(fetch(:application), "deployment-finished", 0, fetch(:scm_user) + '_' + fetch(:branch))
-	  end
+  desc 'Sending Signal Starting to Shipyard Server'
+  task :ship_starting do
+    $URL_SHIYARD_CLI = 'http://localhost/v1/deployments'
+    ShipyardCli.deploy(fetch(:application), "deployment-starting", -2, fetch(:environment))
+  end
+  
+  desc 'Sending Signal Failed to Shipyard Server'
+  task :ship_failed do
+    $URL_SHIYARD_CLI = 'http://localhost/v1/deployments'
+    ShipyardCli.deploy(fetch(:application), "deployment-failed", -1, fetch(:environment))
+  end
 
-	  before :starting, :ship_starting
+  desc 'Sending Signal Finished to Shipyard Server'
+  task :ship_finished do
+    ShipyardCli.deploy(fetch(:application), "deployment-finished", 0, fetch(:environment))
+  end
 
-	  after :finished, :ship_finished
+  before :starting, :ship_starting
+  after 'deploy:failed', :ship_failed
+  after :finished, :ship_finished
 
 END
