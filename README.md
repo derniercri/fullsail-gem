@@ -42,18 +42,17 @@ On you project, go to config/deploy.rb put between 'namespace :deploy do' and 'e
   desc 'Sending Signal Starting to Shipyard Server'
   task :ship_starting do
     $URL_SHIYARD_CLI = 'http://localhost/v1/deployments'
-    ShipyardCli.deploy(fetch(:application), "deployment-starting", -2, fetch(:environment))
+    ShipyardCli.deploy(fetch(:application), "deployment-starting", -2, `git rev-parse HEAD`)
   end
   
   desc 'Sending Signal Failed to Shipyard Server'
   task :ship_failed do
-    $URL_SHIYARD_CLI = 'http://localhost/v1/deployments'
-    ShipyardCli.deploy(fetch(:application), "deployment-failed", -1, fetch(:environment))
+    ShipyardCli.deploy(fetch(:application), "deployment-failed", -1, `git rev-parse HEAD`)
   end
 
   desc 'Sending Signal Finished to Shipyard Server'
   task :ship_finished do
-    ShipyardCli.deploy(fetch(:application), "deployment-finished", 0, fetch(:environment))
+    ShipyardCli.deploy(fetch(:application), "deployment-finished", 0, fetch(:env))
   end
 
   before :starting, :ship_starting
