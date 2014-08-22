@@ -11,16 +11,18 @@ module ShipyardCli
     @server ||= server_url
   end
 
-  def self.deploy(appli = nil, env = nil, stat = 99999, commit = "no commit")
-    if appli.empty? || env.empty? || !stat.is_a?(Fixnum) || stat === 99999
+  def deploy(opts = {})
+
+    if !opts[:application] || !opts[:environment] || !opts[:status] || opts[:status] === 99999
       puts "ShiptardCli.deploy() need 3 args: application, environment, status, [commit_hash]"
       return
     end
+
     deploy = {
-      :application => appli,
-      :environment => env,
-      :status => stat,
-      :commit_hash => commit
+      :application => opts[:application],
+      :environment => opts[:environment],
+      :status => opts[:status],
+      :commit_hash => opts[:commit_hash]
     }
 
     uri = URI(@server) # Global Var Set by User on his code 'http://api.xxx.zz/v1/deployments'
@@ -33,6 +35,6 @@ module ShipyardCli
     puts "Status: #{response.code} #{response.message} Response body following..."
     puts response.body
   end
-
+  
   extend self
 end
