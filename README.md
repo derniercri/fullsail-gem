@@ -5,10 +5,13 @@ Shipyard-Cli
 - Install Shipyard-Cli on you Gemfile app
 -----------------------------------------
 
+
 		gem 'shipyard-cli', :git => 'https://github.com/nectify/shipyard-cli.git'
 
 
+
 First you must config gloval variable in your ruby code
+
 
 	require 'shipyard-cli'
 
@@ -16,6 +19,7 @@ First you must config gloval variable in your ruby code
 
 
 ex: ShipyardCli.url('http://api.xxx.sc/vzz/deployments')
+
 
 
 - To register your deployments, call:
@@ -47,17 +51,20 @@ On you project, go to config/deploy.rb put between 'namespace :deploy do' and 'e
 
 	  desc 'Sending Signal Starting to Shipyard Server'
 	  task :ship_starting do
-	    ShipyardCli.deploy(fetch(:application), "22-08-2014-starting", -2, `git rev-parse HEAD && date`)
+	    options = { :application => fetch(:application), :environment => "22-08-2014-starting", :status => -2, :commit_hash => `git rev-parse HEAD && date` }
+	    ShipyardCli.deploy(options)
 	  end
 	  
 	  desc 'Sending Signal Failed to Shipyard Server'
 	  task :ship_failed do
-	    ShipyardCli.deploy(fetch(:application), "22-08-2014-failed", -1, `git rev-parse HEAD && date`)
+	    options = { :application => fetch(:application), :environment => "22-08-2014-starting", :status => -2, :commit_hash => `git rev-parse HEAD && date`}
+	    ShipyardCli.deploy(options)
 	  end
 
 	  desc 'Sending Signal Finished to Shipyard Server'
 	  task :ship_finishing do
-	    ShipyardCli.deploy(fetch(:application), "22-08-2014-finished", 0, `git rev-parse HEAD && date`)
+	    options = { :application => fetch(:application), :environment => "22-08-2014-starting", :status => -2, :commit_hash => `git rev-parse HEAD && date`}
+	    ShipyardCli.deploy(options)
 	  end
 
 	  before :starting, :ship_starting
