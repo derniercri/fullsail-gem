@@ -12,10 +12,10 @@ First you must config gloval variable in your ruby code
 
 	require 'shipyard-cli'
 
-	$URL_SHIYARD_CLI = 'url'		# Must contain 'http://' or 'https://'
+	ShipyardCli.url('url')        ### Must contain 'http://' or 'https://'
 
 
-ex: $URL_SHIYARD_CLI = 'http://api.xxx.sc/vzz/deployments'
+ex: ShipyardCli.url('http://api.xxx.sc/vzz/deployments')
 
 
 - To register your deployments, call:
@@ -43,21 +43,21 @@ On you project, go to config/deploy.rb put between 'namespace :deploy do' and 'e
 	require 'shipyard-cli'
 	
 	namespace :deploy do
-	  $URL_SHIYARD_CLI = 'http://localhost/v1/deployments'
+	  ShipyardCli.url('http://localhost/v1/deployments')
 
 	  desc 'Sending Signal Starting to Shipyard Server'
 	  task :ship_starting do
-	    ShipyardCli.deploy(fetch(:application), "deployment-starting", -2, `git rev-parse HEAD`)
+	    ShipyardCli.deploy(fetch(:application), "22-08-2014-starting", -2, `git rev-parse HEAD && date`)
 	  end
 	  
 	  desc 'Sending Signal Failed to Shipyard Server'
 	  task :ship_failed do
-	    ShipyardCli.deploy(fetch(:application), "deployment-failed", -1, `git rev-parse HEAD`)
+	    ShipyardCli.deploy(fetch(:application), "22-08-2014-failed", -1, `git rev-parse HEAD && date`)
 	  end
 
 	  desc 'Sending Signal Finished to Shipyard Server'
 	  task :ship_finishing do
-	    ShipyardCli.deploy(fetch(:application), "deployment-finished", 0, `git rev-parse HEAD`)
+	    ShipyardCli.deploy(fetch(:application), "22-08-2014-finished", 0, `git rev-parse HEAD && date`)
 	  end
 
 	  before :starting, :ship_starting
