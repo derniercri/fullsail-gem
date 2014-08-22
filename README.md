@@ -26,17 +26,23 @@ ex: ShipyardCli.url('http://api.xxx.sc/vzz/deployments')
 -------------------------------------
 
 
-	ShipyardCli.deploy(application, environment, status,[commit_hash])
+	options = {
+		:application => value,
+		:environment => value,
+		:status => value,
+		:commit_hash => value
+	}
+    ShipyardCli.deploy(options)
 
 
 
-- **application** [a-z A-Z 0-9]: name of your application
+- **:application** [a-z A-Z 0-9]: name of your application
 
-- **environment** [a-z A-Z 0-9]: environmement deployemts for exemple 'development', 'staging'...
+- **:environment** [a-z A-Z 0-9]: environmement deployemts for exemple 'development', 'staging'...
 
-- **status** [0-9]: '-1' in progress   /  '0' done  /  positive for errors
+- **:status** [0-9]: '-1' in progress   /  '0' done  /  positive for errors
 
-- **commit_hash** (optional): commit hash from git, other...
+- **:commit_hash** (optional): commit hash from git, other...
 
 
 - On Capistrano
