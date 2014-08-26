@@ -1,7 +1,13 @@
 require 'json'
 require 'net/http'
+require 'capistrano/all'
 
 module ShipyardCli
+
+  def record(status)
+    options = { :application => fetch(:application), :environment => fetch(:stage), :status => status, :commit_hash => `git rev-parse HEAD && date` }
+    self.deploy(options)
+  end
 
   def url(server_url = nil)
     unless server_url.include?('://')
