@@ -1,21 +1,14 @@
 require 'json'
 require 'net/http'
 require 'capistrano/all'
-require 'awesome_print'
 
 module ShipyardCli
-  def initialize
-    ap '---------------------- DEBUGG initialize !!! ----------------------'
-  end
-
   def record(status)
-    ap '---------------------- DEBUGG record !!! ----------------------'
     options = {:application => fetch(:application), :environment => fetch(:stage), :status => status, :commit_hash => `git rev-parse HEAD && date`}
     self.deploy(options)
   end
 
   def url(server_url = nil)
-    ap '---------------------- DEBUGG url !!! ----------------------'
     unless server_url.include?('://')
       puts "ShipyardCli.deploy() Set Global var on your code '$URL_SHIYARD_CLI' with valid url"
       return
@@ -24,7 +17,6 @@ module ShipyardCli
   end
 
   def deploy(opts = {})
-    ap '---------------------- DEBUGG deploy !!! ----------------------'
     if !opts[:application] || !opts[:environment] || !opts[:status] || !opts[:status].is_a?(Numeric)
       puts "ShiptardCli.deploy() need 3 args: application, environment, status(numeric), [commit_hash]"
       return
@@ -42,6 +34,6 @@ module ShipyardCli
     req.body = deploy.to_json
     response = http.request(req)
   end
-  
+
   extend self
 end

@@ -1,8 +1,6 @@
 require 'capistrano/shipyard-cli'
 
 namespace :deploy do
-	ShipyardCli.url('http://172.17.42.1/v1/deployments')
-
 	task :ship_starting do
 		ShipyardCli.record(-2)
 	end
