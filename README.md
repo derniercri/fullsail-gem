@@ -2,20 +2,20 @@
 Shipyard-Cli
 ============
 
-- Install Shipyard-Cli on you Gemfile app
------------------------------------------
+- Install Shipyard-Cli on your 'Gemfile' app directory
+----------------------------
 
 		gem 'shipyard-cli', :git => 'https://github.com/nectify/shipyard-cli.git'
 
 
-- On your 'Capfile' add this
+- On your 'Capfile' app directory add this
 ----------------------------
 
 		require 'shipyard-cli'
 		require 'capistrano/shipyard-cli'
 
 
-- The capistrano: config/deploy.rb ad this line and set URL
------------------
+- Capistrano 'config/deploy.rb' ad this line and set URL
+----------------------------
 
 		ShipyardCli.url('http://api.zzzzzzz.sc/v1/deployments')
