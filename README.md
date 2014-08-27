@@ -2,6 +2,8 @@
 Shipyard-Cli
 ============
 
+Used for Capistrano deploy
+
 - Install Shipyard-Cli on your 'Gemfile' app directory
 ----------------------------
 
@@ -15,7 +17,7 @@ Shipyard-Cli
 		require 'capistrano/shipyard-cli'
 
 
-- Capistrano 'config/deploy.rb' ad this line and set URL
+- 'config/deploy.rb' ads this line and set URL
 ----------------------------
 
 		ShipyardCli.url('http://api.zzzzzzz.sc/v1/deployments')
