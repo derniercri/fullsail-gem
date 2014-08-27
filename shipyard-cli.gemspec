@@ -1,13 +1,13 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "shipyard/version"
+require "capistrano/shipyard-cli/version"
 
 Gem::Specification.new do |s|
   s.name = "shipyard-cli"
-  s.version = Shypyard::VERSION
+  s.version = Capistrano::ShipyardCliVr::VERSION
   s.platform = Gem::Platform::RUBY
-  s.licenses = ['MIT']
 
+  s.licenses = ['Nectify']
   s.homepage = 'http://www.fre.sc'
   s.authors = ["Jean-Jacques MOIROUX"]
   s.email = 'jj@fre.sc'
@@ -19,11 +19,11 @@ Gem::Specification.new do |s|
 
   s.files = [
     "lib/capistrano/shipyard-cli.rb",
-    "lib/capistrano/tasks/shipyard-cli.rake"
+    "lib/capistrano/shipyard-cli/version.rb",
+    "lib/capistrano/tasks/shipyard-cli.rake",
+    "lib/shipyard-cli.rb"
   ]
   s.require_paths = ["lib"]
 
-  s.add_dependency 'net/http'
-  s.add_dependency 'capistrano/all'
-  s.add_dependency 'json'
+  s.add_runtime_dependency 'capistrano'
 end
