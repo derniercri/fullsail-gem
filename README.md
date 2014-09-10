@@ -7,7 +7,7 @@ Used for Capistrano deploy
 - Install FullSail on your 'Gemfile' app directory
 ----------------------------
 
-		gem 'fullsail', :git => 'https://github.com/nectify/shipyard-cli.git'
+		gem 'fullsail', '~> 0.0.1'
 
 
 - On your 'Capfile' app directory add this
@@ -21,3 +21,6 @@ Used for Capistrano deploy
 ----------------------------
 
 		FullSail.url('http://api.zzzzzzz.sc/v1/deployments')
+
+
+More details on https://rubygems.org/gems/fullsail
