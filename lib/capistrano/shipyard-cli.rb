@@ -1,1 +1,0 @@
-load File.expand_path("../tasks/shipyard-cli.rake", __FILE__)
