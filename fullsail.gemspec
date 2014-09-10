@@ -14,7 +14,8 @@ Gem::Specification.new do |s|
 
   s.date = "2014-08-18"
   s.summary = "FullSail for Nectify"
-  s.description = "FullSail's Gem is used to log Capistratno's deployments into FullSail API server.
+  s.description = "FullSail's Gem is used to log Capistratno's
+                    deployments into FullSail API server.
                     Source code on https://github.com/nectify/shipyard-cli"
 
   s.files = [

@@ -4,8 +4,18 @@ require 'capistrano/all'
 
 module FullSail
   def record(status)
-    options = {:application => fetch(:application), :environment => fetch(:stage), :status => status, :commit_hash => `git rev-parse HEAD && date`}
+    options = {
+      :application => fetch(:application),
+      :environment => fetch(:stage),
+      :status => status,
+      :commit_hash => @hash
+    }
     self.deploy(options)
+  end
+
+  def setCommitHash
+    @hash = nil
+    @hash = `git ls-remote | grep #{fetch(:branch)} | awk '{print $1}'`
   end
 
   def url(server_url = nil)
