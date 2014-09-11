@@ -1,26 +1,44 @@
 
 FullSail
-============
+========
 
-Used for Capistrano deploy
+Must install Capistrano Gems to use it, find on https://rubygems.org/gems/capistrano with version >= 3.2
 
-- Install FullSail on your 'Gemfile' app directory
-----------------------------
+Install FullSail on your 'Gemfile' app directory
+-----------------------
 
-		gem 'fullsail', '~> 0.0.2'
-
-
-- On your 'Capfile' app directory add this
-----------------------------
-
-		require 'fullsail'
-		require 'capistrano/fullsail'
+	gem 'fullsail', '~> 0.0.2'
 
 
-- 'config/deploy.rb' ad this line and set URL
-----------------------------
 
-		FullSail.url('http://alpha-omega.xyz/v1/deployments')
+On your 'Capfile' app directory add this
+-----------------------
+
+	require 'fullsail'
+
+	require 'capistrano/fullsail'
 
 
+
+
+'config/deploy.rb' ad this line and set URL
+-----------------------
+
+	FullSail.url('http://XXXXXXXXX.YYY/v1/deployments')
+
+
+ex: "FullSail.url('http://alpha-omega.xyz/v1/deployments')"
+
+
+Usage:
+======
+
+
+Your Capistrano deploy send Application Name, environment, status and commit_hash on a FullSail API Server, who register all logs sended from capistrano. 3 status avaivable:
+
+-1 => Deployment running
+
+0 => Deployment Succes (done)
+
+(Int < -1) or (Int > 0) => Deployment Failed (in the future this status can be used to configure some errors code)
 More details on https://rubygems.org/gems/fullsail
