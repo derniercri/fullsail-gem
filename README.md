@@ -7,7 +7,7 @@ Used for Capistrano deploy
 - Install FullSail on your 'Gemfile' app directory
 ----------------------------
 
-		gem 'fullsail', '~> 0.0.1'
+		gem 'fullsail', '~> 0.0.2'
 
 
 - On your 'Capfile' app directory add this
@@ -17,10 +17,10 @@ Used for Capistrano deploy
 		require 'capistrano/fullsail'
 
 
-- 'config/deploy.rb' ads this line and set URL
+- 'config/deploy.rb' ad this line and set URL
 ----------------------------
 
-		FullSail.url('http://api.zzzzzzz.sc/v1/deployments')
+		FullSail.url('http://alpha-omega.xyz/v1/deployments')
 
 
 More details on https://rubygems.org/gems/fullsail
