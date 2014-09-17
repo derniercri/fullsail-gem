@@ -8,8 +8,8 @@ Must install Capistrano Gems to use it, find on https://rubygems.org/gems/capist
 Install FullSail on your 'Gemfile' app directory
 -----------------------
 
-		group :development do
-      gem 'capistrano', '~> 3.1'
+    group :development do
+      gem 'capistrano', '~> 3.2'
       gem 'fullsail', '~> 0.0.3'
     end
 
