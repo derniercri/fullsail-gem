@@ -2,15 +2,25 @@ require 'json'
 require 'net/http'
 require 'capistrano/all'
 
-module ShipyardCli
+module FullSail
   def record(status)
-    options = {:application => fetch(:application), :environment => fetch(:stage), :status => status, :commit_hash => `git rev-parse HEAD && date`}
+    options = {
+      :application => fetch(:application),
+      :environment => fetch(:stage),
+      :status => status,
+      :commit_hash => @hash
+    }
     self.deploy(options)
+  end
+
+  def setCommitHash
+    @hash = nil
+    @hash = `git ls-remote | grep #{fetch(:branch)} | awk '{print $1}'`
   end
 
   def url(server_url = nil)
     unless server_url.include?('://')
-      puts "ShipyardCli.deploy() Set Global var on your code '$URL_SHIYARD_CLI' with valid url"
+      puts "FullSail.deploy() Set Global var on your code '$URL_FULLSAIL' with valid url"
       return
     end
     @server ||= server_url
@@ -18,7 +28,7 @@ module ShipyardCli
 
   def deploy(opts = {})
     if !opts[:application] || !opts[:environment] || !opts[:status] || !opts[:status].is_a?(Numeric)
-      puts "ShiptardCli.deploy() need 3 args: application, environment, status(numeric), [commit_hash]"
+      puts "FullSail.deploy() need 3 args: application, environment, status(numeric), [commit_hash]"
       return
     end
     deploy = {
