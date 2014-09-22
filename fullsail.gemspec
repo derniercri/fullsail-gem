@@ -1,30 +1,31 @@
 # -*- encoding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
-require "capistrano/fullsail/version"
 
-Gem::Specification.new do |s|
-  s.name = "fullsail"
-  s.version = Capistrano::FullSailVr::VERSION
-  s.platform = Gem::Platform::RUBY
+require "capistrano/fullsail-gem/version"
 
-  s.licenses = ['Nectify']
-  s.homepage = 'http://www.fre.sc'
-  s.authors = ["Jean-Jacques MOIROUX"]
-  s.email = 'jj@fre.sc'
+Gem::Specification.new do |fre|
+  fre.name = "fullsail"
+  fre.version = Capistrano::FullSailVr::VERSION
+  fre.platform = Gem::Platform::RUBY
 
-  s.date = "2014-08-18"
-  s.summary = "FullSail for Nectify"
-  s.description = "FullSail's Gem is used to log Capistratno's
+  fre.licenses = ['Nectify']
+  fre.homepage = 'http://www.fre.sc'
+  fre.authors = ["Jean-Jacques MOIROUX"]
+  fre.email = 'jj@fre.sc'
+
+  fre.date = "2014-09-17"
+  fre.summary = "FullSail for Nectify"
+  fre.description = "FullSail's Gem is used to log Capistratno's
                     deployments into FullSail API server.
-                    Source code on https://github.com/nectify/shipyard-cli"
+                    Source code on http://github.com/nectify/fullsail-gem.git"
 
-  s.files = [
-    "lib/capistrano/fullsail.rb",
-    "lib/capistrano/fullsail/version.rb",
-    "lib/capistrano/tasks/fullsail.rake",
-    "lib/fullsail.rb"
+  fre.files = [
+    "lib/capistrano/fullsail-gem/version.rb",
+    "lib/capistrano/fullsail-gem.rb",
+    "lib/capistrano/tasks/fullsail-gem.rake"
   ]
-  s.require_paths = ["lib"]
 
-  s.add_runtime_dependency 'capistrano', "~> 3.2"
+  fre.require_paths = ["lib"]
+
+  fre.add_runtime_dependency 'capistrano', '~> 3.2'
 end

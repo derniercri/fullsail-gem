@@ -1,1 +1,0 @@
-load File.expand_path("../tasks/fullsail.rake", __FILE__)

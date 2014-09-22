@@ -1,6 +1,5 @@
 require 'json'
 require 'net/http'
-require 'capistrano/all'
 
 module FullSail
   def record(status)
@@ -47,3 +46,5 @@ module FullSail
 
   extend self
 end
+
+load File.expand_path("../tasks/fullsail-gem.rake", __FILE__)
